@@ -42,18 +42,18 @@ function EventosAdmin() {
   const save = useMutation({
     mutationFn: async () => {
       if (!form.titulo || !form.data_inicio) throw new Error("Título e data são obrigatórios.");
-      const payload = {
-        titulo: form.titulo, slug: makeSlug(form.titulo) + "-" + Date.now().toString(36),
+      const base = {
+        titulo: form.titulo,
         descricao: form.descricao || null,
         data_inicio: new Date(form.data_inicio).toISOString(),
         data_fim: form.data_fim ? new Date(form.data_fim).toISOString() : null,
         local: form.local || null, categoria: form.categoria || null, imagem: form.imagem,
       };
       if (form.id) {
-        const { error } = await supabase.from("eventos").update({ ...payload, slug: undefined }).eq("id", form.id);
+        const { error } = await supabase.from("eventos").update(base).eq("id", form.id);
         if (error) throw error;
       } else {
-        const { error } = await supabase.from("eventos").insert(payload);
+        const { error } = await supabase.from("eventos").insert({ ...base, slug: makeSlug(form.titulo) + "-" + Date.now().toString(36) });
         if (error) throw error;
       }
     },
