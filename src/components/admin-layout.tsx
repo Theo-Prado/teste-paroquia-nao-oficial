@@ -10,7 +10,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
 
-const items = [
+type NavItem = {
+  to: string;
+  label: string;
+  icon: typeof LayoutDashboard;
+  exact?: boolean;
+  adminOnly?: boolean;
+};
+const items: NavItem[] = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/postagens", label: "Postagens", icon: FileText },
   { to: "/admin/eventos", label: "Eventos", icon: Calendar },
@@ -23,7 +30,7 @@ const items = [
   { to: "/admin/usuarios", label: "Usuários", icon: Users, adminOnly: true },
   { to: "/admin/logs", label: "Logs", icon: ScrollText, adminOnly: true },
   { to: "/admin/configuracoes", label: "Configurações", icon: Settings, adminOnly: true },
-] as const;
+];
 
 export function AdminLayout({ children, title }: { children: ReactNode; title?: string }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
