@@ -12,4 +12,10 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    define: {
+      // Ensure we're targeting production properly
+      __DEV__: false,
+    },
+  },
 });
