@@ -22,6 +22,9 @@ import { Route as NoticiasIndexRouteImport } from './routes/noticias.index'
 import { Route as NoticiasSlugRouteImport } from './routes/noticias.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
+import { Route as AuthenticatedAdminPostagensIndexRouteImport } from './routes/_authenticated.admin.postagens.index'
+import { Route as AuthenticatedAdminPostagensNovoRouteImport } from './routes/_authenticated.admin.postagens.novo'
+import { Route as AuthenticatedAdminPostagensIdRouteImport } from './routes/_authenticated.admin.postagens.$id'
 
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
@@ -87,6 +90,24 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminPostagensIndexRoute =
+  AuthenticatedAdminPostagensIndexRouteImport.update({
+    id: '/postagens/',
+    path: '/postagens/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPostagensNovoRoute =
+  AuthenticatedAdminPostagensNovoRouteImport.update({
+    id: '/postagens/novo',
+    path: '/postagens/novo',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPostagensIdRoute =
+  AuthenticatedAdminPostagensIdRouteImport.update({
+    id: '/postagens/$id',
+    path: '/postagens/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -101,6 +122,9 @@ export interface FileRoutesByFullPath {
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
+  '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/admin/postagens/': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -114,6 +138,9 @@ export interface FileRoutesByTo {
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias': typeof NoticiasIndexRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
+  '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/admin/postagens': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -130,6 +157,9 @@ export interface FileRoutesById {
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
+  '/_authenticated/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/_authenticated/admin/postagens/': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -146,6 +176,9 @@ export interface FileRouteTypes {
     | '/noticias/$slug'
     | '/noticias/'
     | '/admin/'
+    | '/admin/postagens/$id'
+    | '/admin/postagens/novo'
+    | '/admin/postagens/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -159,6 +192,9 @@ export interface FileRouteTypes {
     | '/noticias/$slug'
     | '/noticias'
     | '/admin'
+    | '/admin/postagens/$id'
+    | '/admin/postagens/novo'
+    | '/admin/postagens'
   id:
     | '__root__'
     | '/'
@@ -174,6 +210,9 @@ export interface FileRouteTypes {
     | '/noticias/$slug'
     | '/noticias/'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/postagens/$id'
+    | '/_authenticated/admin/postagens/novo'
+    | '/_authenticated/admin/postagens/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -283,15 +322,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/postagens/': {
+      id: '/_authenticated/admin/postagens/'
+      path: '/postagens'
+      fullPath: '/admin/postagens/'
+      preLoaderRoute: typeof AuthenticatedAdminPostagensIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/postagens/novo': {
+      id: '/_authenticated/admin/postagens/novo'
+      path: '/postagens/novo'
+      fullPath: '/admin/postagens/novo'
+      preLoaderRoute: typeof AuthenticatedAdminPostagensNovoRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/postagens/$id': {
+      id: '/_authenticated/admin/postagens/$id'
+      path: '/postagens/$id'
+      fullPath: '/admin/postagens/$id'
+      preLoaderRoute: typeof AuthenticatedAdminPostagensIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminPostagensIdRoute: typeof AuthenticatedAdminPostagensIdRoute
+  AuthenticatedAdminPostagensNovoRoute: typeof AuthenticatedAdminPostagensNovoRoute
+  AuthenticatedAdminPostagensIndexRoute: typeof AuthenticatedAdminPostagensIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminPostagensIdRoute: AuthenticatedAdminPostagensIdRoute,
+  AuthenticatedAdminPostagensNovoRoute: AuthenticatedAdminPostagensNovoRoute,
+  AuthenticatedAdminPostagensIndexRoute: AuthenticatedAdminPostagensIndexRoute,
 }
 
 const AuthenticatedAdminRouteWithChildren =

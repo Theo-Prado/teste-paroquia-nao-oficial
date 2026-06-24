@@ -32,7 +32,8 @@ function PostagensList() {
 
   const toggleField = useMutation({
     mutationFn: async ({ id, field, value }: { id: string; field: "destaque" | "fixado"; value: boolean }) => {
-      const { error } = await supabase.from("postagens").update({ [field]: value }).eq("id", id);
+      const update = field === "destaque" ? { destaque: value } : { fixado: value };
+      const { error } = await supabase.from("postagens").update(update).eq("id", id);
       if (error) throw error;
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["admin-posts"] }),
