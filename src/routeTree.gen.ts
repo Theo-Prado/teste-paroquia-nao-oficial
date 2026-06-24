@@ -9,38 +9,433 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as NewsletterRouteImport } from './routes/newsletter'
+import { Route as MissasRouteImport } from './routes/missas'
+import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NoticiasIndexRouteImport } from './routes/noticias.index'
+import { Route as NoticiasSlugRouteImport } from './routes/noticias.$slug'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.admin'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
+import { Route as AuthenticatedAdminUsuariosRouteImport } from './routes/_authenticated.admin.usuarios'
+import { Route as AuthenticatedAdminNewsletterRouteImport } from './routes/_authenticated.admin.newsletter'
+import { Route as AuthenticatedAdminMissasRouteImport } from './routes/_authenticated.admin.missas'
+import { Route as AuthenticatedAdminMensagensRouteImport } from './routes/_authenticated.admin.mensagens'
+import { Route as AuthenticatedAdminLogsRouteImport } from './routes/_authenticated.admin.logs'
+import { Route as AuthenticatedAdminGaleriaRouteImport } from './routes/_authenticated.admin.galeria'
+import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated.admin.eventos'
+import { Route as AuthenticatedAdminConfiguracoesRouteImport } from './routes/_authenticated.admin.configuracoes'
+import { Route as AuthenticatedAdminComentariosRouteImport } from './routes/_authenticated.admin.comentarios'
+import { Route as AuthenticatedAdminArquivosRouteImport } from './routes/_authenticated.admin.arquivos'
+import { Route as AuthenticatedAdminPostagensIndexRouteImport } from './routes/_authenticated.admin.postagens.index'
+import { Route as AuthenticatedAdminPostagensNovoRouteImport } from './routes/_authenticated.admin.postagens.novo'
+import { Route as AuthenticatedAdminPostagensIdRouteImport } from './routes/_authenticated.admin.postagens.$id'
 
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsletterRoute = NewsletterRouteImport.update({
+  id: '/newsletter',
+  path: '/newsletter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MissasRoute = MissasRouteImport.update({
+  id: '/missas',
+  path: '/missas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
+  id: '/noticias/',
+  path: '/noticias/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoticiasSlugRoute = NoticiasSlugRouteImport.update({
+  id: '/noticias/$slug',
+  path: '/noticias/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminUsuariosRoute =
+  AuthenticatedAdminUsuariosRouteImport.update({
+    id: '/usuarios',
+    path: '/usuarios',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminNewsletterRoute =
+  AuthenticatedAdminNewsletterRouteImport.update({
+    id: '/newsletter',
+    path: '/newsletter',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminMissasRoute =
+  AuthenticatedAdminMissasRouteImport.update({
+    id: '/missas',
+    path: '/missas',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminMensagensRoute =
+  AuthenticatedAdminMensagensRouteImport.update({
+    id: '/mensagens',
+    path: '/mensagens',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminLogsRoute = AuthenticatedAdminLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminGaleriaRoute =
+  AuthenticatedAdminGaleriaRouteImport.update({
+    id: '/galeria',
+    path: '/galeria',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminEventosRoute =
+  AuthenticatedAdminEventosRouteImport.update({
+    id: '/eventos',
+    path: '/eventos',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminConfiguracoesRoute =
+  AuthenticatedAdminConfiguracoesRouteImport.update({
+    id: '/configuracoes',
+    path: '/configuracoes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminComentariosRoute =
+  AuthenticatedAdminComentariosRouteImport.update({
+    id: '/comentarios',
+    path: '/comentarios',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminArquivosRoute =
+  AuthenticatedAdminArquivosRouteImport.update({
+    id: '/arquivos',
+    path: '/arquivos',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPostagensIndexRoute =
+  AuthenticatedAdminPostagensIndexRouteImport.update({
+    id: '/postagens/',
+    path: '/postagens/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPostagensNovoRoute =
+  AuthenticatedAdminPostagensNovoRouteImport.update({
+    id: '/postagens/novo',
+    path: '/postagens/novo',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPostagensIdRoute =
+  AuthenticatedAdminPostagensIdRouteImport.update({
+    id: '/postagens/$id',
+    path: '/postagens/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/auth': typeof AuthRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/missas': typeof MissasRoute
+  '/newsletter': typeof NewsletterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/noticias/$slug': typeof NoticiasSlugRoute
+  '/noticias/': typeof NoticiasIndexRoute
+  '/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
+  '/admin/comentarios': typeof AuthenticatedAdminComentariosRoute
+  '/admin/configuracoes': typeof AuthenticatedAdminConfiguracoesRoute
+  '/admin/eventos': typeof AuthenticatedAdminEventosRoute
+  '/admin/galeria': typeof AuthenticatedAdminGaleriaRoute
+  '/admin/logs': typeof AuthenticatedAdminLogsRoute
+  '/admin/mensagens': typeof AuthenticatedAdminMensagensRoute
+  '/admin/missas': typeof AuthenticatedAdminMissasRoute
+  '/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
+  '/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
+  '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/admin/postagens/': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/auth': typeof AuthRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/missas': typeof MissasRoute
+  '/newsletter': typeof NewsletterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
+  '/noticias/$slug': typeof NoticiasSlugRoute
+  '/noticias': typeof NoticiasIndexRoute
+  '/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
+  '/admin/comentarios': typeof AuthenticatedAdminComentariosRoute
+  '/admin/configuracoes': typeof AuthenticatedAdminConfiguracoesRoute
+  '/admin/eventos': typeof AuthenticatedAdminEventosRoute
+  '/admin/galeria': typeof AuthenticatedAdminGaleriaRoute
+  '/admin/logs': typeof AuthenticatedAdminLogsRoute
+  '/admin/mensagens': typeof AuthenticatedAdminMensagensRoute
+  '/admin/missas': typeof AuthenticatedAdminMissasRoute
+  '/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
+  '/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
+  '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/admin/postagens': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/agenda': typeof AgendaRoute
+  '/auth': typeof AuthRoute
+  '/contato': typeof ContatoRoute
+  '/galeria': typeof GaleriaRoute
+  '/missas': typeof MissasRoute
+  '/newsletter': typeof NewsletterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/noticias/$slug': typeof NoticiasSlugRoute
+  '/noticias/': typeof NoticiasIndexRoute
+  '/_authenticated/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
+  '/_authenticated/admin/comentarios': typeof AuthenticatedAdminComentariosRoute
+  '/_authenticated/admin/configuracoes': typeof AuthenticatedAdminConfiguracoesRoute
+  '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
+  '/_authenticated/admin/galeria': typeof AuthenticatedAdminGaleriaRoute
+  '/_authenticated/admin/logs': typeof AuthenticatedAdminLogsRoute
+  '/_authenticated/admin/mensagens': typeof AuthenticatedAdminMensagensRoute
+  '/_authenticated/admin/missas': typeof AuthenticatedAdminMissasRoute
+  '/_authenticated/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
+  '/_authenticated/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
+  '/_authenticated/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/_authenticated/admin/postagens/': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agenda'
+    | '/auth'
+    | '/contato'
+    | '/galeria'
+    | '/missas'
+    | '/newsletter'
+    | '/sitemap.xml'
+    | '/sobre'
+    | '/admin'
+    | '/noticias/$slug'
+    | '/noticias/'
+    | '/admin/arquivos'
+    | '/admin/comentarios'
+    | '/admin/configuracoes'
+    | '/admin/eventos'
+    | '/admin/galeria'
+    | '/admin/logs'
+    | '/admin/mensagens'
+    | '/admin/missas'
+    | '/admin/newsletter'
+    | '/admin/usuarios'
+    | '/admin/'
+    | '/admin/postagens/$id'
+    | '/admin/postagens/novo'
+    | '/admin/postagens/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agenda'
+    | '/auth'
+    | '/contato'
+    | '/galeria'
+    | '/missas'
+    | '/newsletter'
+    | '/sitemap.xml'
+    | '/sobre'
+    | '/noticias/$slug'
+    | '/noticias'
+    | '/admin/arquivos'
+    | '/admin/comentarios'
+    | '/admin/configuracoes'
+    | '/admin/eventos'
+    | '/admin/galeria'
+    | '/admin/logs'
+    | '/admin/mensagens'
+    | '/admin/missas'
+    | '/admin/newsletter'
+    | '/admin/usuarios'
+    | '/admin'
+    | '/admin/postagens/$id'
+    | '/admin/postagens/novo'
+    | '/admin/postagens'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/agenda'
+    | '/auth'
+    | '/contato'
+    | '/galeria'
+    | '/missas'
+    | '/newsletter'
+    | '/sitemap.xml'
+    | '/sobre'
+    | '/_authenticated/admin'
+    | '/noticias/$slug'
+    | '/noticias/'
+    | '/_authenticated/admin/arquivos'
+    | '/_authenticated/admin/comentarios'
+    | '/_authenticated/admin/configuracoes'
+    | '/_authenticated/admin/eventos'
+    | '/_authenticated/admin/galeria'
+    | '/_authenticated/admin/logs'
+    | '/_authenticated/admin/mensagens'
+    | '/_authenticated/admin/missas'
+    | '/_authenticated/admin/newsletter'
+    | '/_authenticated/admin/usuarios'
+    | '/_authenticated/admin/'
+    | '/_authenticated/admin/postagens/$id'
+    | '/_authenticated/admin/postagens/novo'
+    | '/_authenticated/admin/postagens/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AgendaRoute: typeof AgendaRoute
+  AuthRoute: typeof AuthRoute
+  ContatoRoute: typeof ContatoRoute
+  GaleriaRoute: typeof GaleriaRoute
+  MissasRoute: typeof MissasRoute
+  NewsletterRoute: typeof NewsletterRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SobreRoute: typeof SobreRoute
+  NoticiasSlugRoute: typeof NoticiasSlugRoute
+  NoticiasIndexRoute: typeof NoticiasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/newsletter': {
+      id: '/newsletter'
+      path: '/newsletter'
+      fullPath: '/newsletter'
+      preLoaderRoute: typeof NewsletterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/missas': {
+      id: '/missas'
+      path: '/missas'
+      fullPath: '/missas'
+      preLoaderRoute: typeof MissasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +443,191 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/noticias/': {
+      id: '/noticias/'
+      path: '/noticias'
+      fullPath: '/noticias/'
+      preLoaderRoute: typeof NoticiasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/noticias/$slug': {
+      id: '/noticias/$slug'
+      path: '/noticias/$slug'
+      fullPath: '/noticias/$slug'
+      preLoaderRoute: typeof NoticiasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/usuarios': {
+      id: '/_authenticated/admin/usuarios'
+      path: '/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AuthenticatedAdminUsuariosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/newsletter': {
+      id: '/_authenticated/admin/newsletter'
+      path: '/newsletter'
+      fullPath: '/admin/newsletter'
+      preLoaderRoute: typeof AuthenticatedAdminNewsletterRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/missas': {
+      id: '/_authenticated/admin/missas'
+      path: '/missas'
+      fullPath: '/admin/missas'
+      preLoaderRoute: typeof AuthenticatedAdminMissasRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/mensagens': {
+      id: '/_authenticated/admin/mensagens'
+      path: '/mensagens'
+      fullPath: '/admin/mensagens'
+      preLoaderRoute: typeof AuthenticatedAdminMensagensRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/logs': {
+      id: '/_authenticated/admin/logs'
+      path: '/logs'
+      fullPath: '/admin/logs'
+      preLoaderRoute: typeof AuthenticatedAdminLogsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/galeria': {
+      id: '/_authenticated/admin/galeria'
+      path: '/galeria'
+      fullPath: '/admin/galeria'
+      preLoaderRoute: typeof AuthenticatedAdminGaleriaRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/eventos': {
+      id: '/_authenticated/admin/eventos'
+      path: '/eventos'
+      fullPath: '/admin/eventos'
+      preLoaderRoute: typeof AuthenticatedAdminEventosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/configuracoes': {
+      id: '/_authenticated/admin/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/admin/configuracoes'
+      preLoaderRoute: typeof AuthenticatedAdminConfiguracoesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/comentarios': {
+      id: '/_authenticated/admin/comentarios'
+      path: '/comentarios'
+      fullPath: '/admin/comentarios'
+      preLoaderRoute: typeof AuthenticatedAdminComentariosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/arquivos': {
+      id: '/_authenticated/admin/arquivos'
+      path: '/arquivos'
+      fullPath: '/admin/arquivos'
+      preLoaderRoute: typeof AuthenticatedAdminArquivosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/postagens/': {
+      id: '/_authenticated/admin/postagens/'
+      path: '/postagens'
+      fullPath: '/admin/postagens/'
+      preLoaderRoute: typeof AuthenticatedAdminPostagensIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/postagens/novo': {
+      id: '/_authenticated/admin/postagens/novo'
+      path: '/postagens/novo'
+      fullPath: '/admin/postagens/novo'
+      preLoaderRoute: typeof AuthenticatedAdminPostagensNovoRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/postagens/$id': {
+      id: '/_authenticated/admin/postagens/$id'
+      path: '/postagens/$id'
+      fullPath: '/admin/postagens/$id'
+      preLoaderRoute: typeof AuthenticatedAdminPostagensIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminArquivosRoute: typeof AuthenticatedAdminArquivosRoute
+  AuthenticatedAdminComentariosRoute: typeof AuthenticatedAdminComentariosRoute
+  AuthenticatedAdminConfiguracoesRoute: typeof AuthenticatedAdminConfiguracoesRoute
+  AuthenticatedAdminEventosRoute: typeof AuthenticatedAdminEventosRoute
+  AuthenticatedAdminGaleriaRoute: typeof AuthenticatedAdminGaleriaRoute
+  AuthenticatedAdminLogsRoute: typeof AuthenticatedAdminLogsRoute
+  AuthenticatedAdminMensagensRoute: typeof AuthenticatedAdminMensagensRoute
+  AuthenticatedAdminMissasRoute: typeof AuthenticatedAdminMissasRoute
+  AuthenticatedAdminNewsletterRoute: typeof AuthenticatedAdminNewsletterRoute
+  AuthenticatedAdminUsuariosRoute: typeof AuthenticatedAdminUsuariosRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminPostagensIdRoute: typeof AuthenticatedAdminPostagensIdRoute
+  AuthenticatedAdminPostagensNovoRoute: typeof AuthenticatedAdminPostagensNovoRoute
+  AuthenticatedAdminPostagensIndexRoute: typeof AuthenticatedAdminPostagensIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminArquivosRoute: AuthenticatedAdminArquivosRoute,
+  AuthenticatedAdminComentariosRoute: AuthenticatedAdminComentariosRoute,
+  AuthenticatedAdminConfiguracoesRoute: AuthenticatedAdminConfiguracoesRoute,
+  AuthenticatedAdminEventosRoute: AuthenticatedAdminEventosRoute,
+  AuthenticatedAdminGaleriaRoute: AuthenticatedAdminGaleriaRoute,
+  AuthenticatedAdminLogsRoute: AuthenticatedAdminLogsRoute,
+  AuthenticatedAdminMensagensRoute: AuthenticatedAdminMensagensRoute,
+  AuthenticatedAdminMissasRoute: AuthenticatedAdminMissasRoute,
+  AuthenticatedAdminNewsletterRoute: AuthenticatedAdminNewsletterRoute,
+  AuthenticatedAdminUsuariosRoute: AuthenticatedAdminUsuariosRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminPostagensIdRoute: AuthenticatedAdminPostagensIdRoute,
+  AuthenticatedAdminPostagensNovoRoute: AuthenticatedAdminPostagensNovoRoute,
+  AuthenticatedAdminPostagensIndexRoute: AuthenticatedAdminPostagensIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  AgendaRoute: AgendaRoute,
+  AuthRoute: AuthRoute,
+  ContatoRoute: ContatoRoute,
+  GaleriaRoute: GaleriaRoute,
+  MissasRoute: MissasRoute,
+  NewsletterRoute: NewsletterRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SobreRoute: SobreRoute,
+  NoticiasSlugRoute: NoticiasSlugRoute,
+  NoticiasIndexRoute: NoticiasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
