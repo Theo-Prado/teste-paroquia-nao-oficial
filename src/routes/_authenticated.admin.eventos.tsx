@@ -66,7 +66,8 @@ function EventosAdmin() {
     onSuccess: () => { toast.success("Excluído."); qc.invalidateQueries({ queryKey: ["admin-eventos"] }); },
   });
 
-  const edit = (e: typeof eventos extends Array<infer T> ? T : never) => {
+  type Evento = NonNullable<typeof eventos>[number];
+  const edit = (e: Evento) => {
     setForm({
       id: e.id, titulo: e.titulo, descricao: e.descricao ?? "",
       data_inicio: e.data_inicio.slice(0, 16), data_fim: e.data_fim?.slice(0, 16) ?? "",
