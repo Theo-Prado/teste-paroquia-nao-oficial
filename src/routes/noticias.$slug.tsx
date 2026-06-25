@@ -66,7 +66,7 @@ function PostPage() {
   const { data: comentarios } = useQuery({
     queryKey: ["comentarios", post.id],
     queryFn: async () => {
-      const { data } = await supabase.from("comentarios").select("*").eq("postagem_id", post.id).eq("status", "aprovado").order("created_at", { ascending: false });
+      const { data } = await supabase.from("comentarios").select("id, nome, conteudo, created_at, postagem_id, status").eq("postagem_id", post.id).eq("status", "aprovado").order("created_at", { ascending: false });
       return data ?? [];
     },
   });
