@@ -39,6 +39,7 @@ import { Route as AuthenticatedAdminFormulariosIndexRouteImport } from './routes
 import { Route as ApiPublicFormsSubmitRouteImport } from './routes/api.public.forms.submit'
 import { Route as AuthenticatedAdminPostagensNovoRouteImport } from './routes/_authenticated.admin.postagens.novo'
 import { Route as AuthenticatedAdminPostagensIdRouteImport } from './routes/_authenticated.admin.postagens.$id'
+import { Route as AuthenticatedAdminFormulariosRespostasRouteImport } from './routes/_authenticated.admin.formularios.respostas'
 import { Route as AuthenticatedAdminFormulariosNovoRouteImport } from './routes/_authenticated.admin.formularios.novo'
 import { Route as AuthenticatedAdminFormulariosIdRouteImport } from './routes/_authenticated.admin.formularios.$id'
 
@@ -204,6 +205,12 @@ const AuthenticatedAdminPostagensIdRoute =
     path: '/postagens/$id',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminFormulariosRespostasRoute =
+  AuthenticatedAdminFormulariosRespostasRouteImport.update({
+    id: '/formularios/respostas',
+    path: '/formularios/respostas',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminFormulariosNovoRoute =
   AuthenticatedAdminFormulariosNovoRouteImport.update({
     id: '/formularios/novo',
@@ -244,6 +251,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/formularios/$id': typeof AuthenticatedAdminFormulariosIdRoute
   '/admin/formularios/novo': typeof AuthenticatedAdminFormulariosNovoRoute
+  '/admin/formularios/respostas': typeof AuthenticatedAdminFormulariosRespostasRoute
   '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
   '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
@@ -276,6 +284,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/formularios/$id': typeof AuthenticatedAdminFormulariosIdRoute
   '/admin/formularios/novo': typeof AuthenticatedAdminFormulariosNovoRoute
+  '/admin/formularios/respostas': typeof AuthenticatedAdminFormulariosRespostasRoute
   '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
   '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
@@ -311,6 +320,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/formularios/$id': typeof AuthenticatedAdminFormulariosIdRoute
   '/_authenticated/admin/formularios/novo': typeof AuthenticatedAdminFormulariosNovoRoute
+  '/_authenticated/admin/formularios/respostas': typeof AuthenticatedAdminFormulariosRespostasRoute
   '/_authenticated/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/_authenticated/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
   '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
@@ -346,6 +356,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/admin/formularios/$id'
     | '/admin/formularios/novo'
+    | '/admin/formularios/respostas'
     | '/admin/postagens/$id'
     | '/admin/postagens/novo'
     | '/api/public/forms/submit'
@@ -378,6 +389,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/formularios/$id'
     | '/admin/formularios/novo'
+    | '/admin/formularios/respostas'
     | '/admin/postagens/$id'
     | '/admin/postagens/novo'
     | '/api/public/forms/submit'
@@ -412,6 +424,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/'
     | '/_authenticated/admin/formularios/$id'
     | '/_authenticated/admin/formularios/novo'
+    | '/_authenticated/admin/formularios/respostas'
     | '/_authenticated/admin/postagens/$id'
     | '/_authenticated/admin/postagens/novo'
     | '/api/public/forms/submit'
@@ -648,6 +661,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPostagensIdRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/formularios/respostas': {
+      id: '/_authenticated/admin/formularios/respostas'
+      path: '/formularios/respostas'
+      fullPath: '/admin/formularios/respostas'
+      preLoaderRoute: typeof AuthenticatedAdminFormulariosRespostasRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/formularios/novo': {
       id: '/_authenticated/admin/formularios/novo'
       path: '/formularios/novo'
@@ -679,6 +699,7 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminFormulariosIdRoute: typeof AuthenticatedAdminFormulariosIdRoute
   AuthenticatedAdminFormulariosNovoRoute: typeof AuthenticatedAdminFormulariosNovoRoute
+  AuthenticatedAdminFormulariosRespostasRoute: typeof AuthenticatedAdminFormulariosRespostasRoute
   AuthenticatedAdminPostagensIdRoute: typeof AuthenticatedAdminPostagensIdRoute
   AuthenticatedAdminPostagensNovoRoute: typeof AuthenticatedAdminPostagensNovoRoute
   AuthenticatedAdminFormulariosIndexRoute: typeof AuthenticatedAdminFormulariosIndexRoute
@@ -700,6 +721,8 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminFormulariosIdRoute: AuthenticatedAdminFormulariosIdRoute,
   AuthenticatedAdminFormulariosNovoRoute:
     AuthenticatedAdminFormulariosNovoRoute,
+  AuthenticatedAdminFormulariosRespostasRoute:
+    AuthenticatedAdminFormulariosRespostasRoute,
   AuthenticatedAdminPostagensIdRoute: AuthenticatedAdminPostagensIdRoute,
   AuthenticatedAdminPostagensNovoRoute: AuthenticatedAdminPostagensNovoRoute,
   AuthenticatedAdminFormulariosIndexRoute:

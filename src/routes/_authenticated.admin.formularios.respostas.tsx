@@ -160,7 +160,7 @@ function SubmissionsPanel() {
         <div>
           <Label>Formulário</Label>
           <Select value={search.form ?? "all"}
-            onValueChange={(v) => navigate({ search: (s) => ({ ...s, form: v === "all" ? undefined : v }) })}>
+            onValueChange={(v) => navigate({ search: (s: Record<string, string | undefined>) => ({ ...s, form: v === "all" ? undefined : v }) })}>
             <SelectTrigger><SelectValue placeholder="Todos" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos</SelectItem>
@@ -171,7 +171,7 @@ function SubmissionsPanel() {
         <div>
           <Label>Status</Label>
           <Select value={search.status ?? "all"}
-            onValueChange={(v) => navigate({ search: (s) => ({ ...s, status: v === "all" ? undefined : v }) })}>
+            onValueChange={(v) => navigate({ search: (s: Record<string, string | undefined>) => ({ ...s, status: v === "all" ? undefined : v }) })}>
             <SelectTrigger><SelectValue placeholder="Todos" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos</SelectItem>
@@ -184,15 +184,15 @@ function SubmissionsPanel() {
         </div>
         <div>
           <Label>De</Label>
-          <Input type="date" value={search.from ?? ""} onChange={(e) => navigate({ search: (s) => ({ ...s, from: e.target.value || undefined }) })} />
+          <Input type="date" value={search.from ?? ""} onChange={(e) => navigate({ search: (s: Record<string, string | undefined>) => ({ ...s, from: e.target.value || undefined }) })} />
         </div>
         <div>
           <Label>Até</Label>
-          <Input type="date" value={search.to ?? ""} onChange={(e) => navigate({ search: (s) => ({ ...s, to: e.target.value || undefined }) })} />
+          <Input type="date" value={search.to ?? ""} onChange={(e) => navigate({ search: (s: Record<string, string | undefined>) => ({ ...s, to: e.target.value || undefined }) })} />
         </div>
         <div>
           <Label>Busca</Label>
-          <Input placeholder="Texto, IP, ID..." value={search.q ?? ""} onChange={(e) => navigate({ search: (s) => ({ ...s, q: e.target.value || undefined }) })} />
+          <Input placeholder="Texto, IP, ID..." value={search.q ?? ""} onChange={(e) => navigate({ search: (s: Record<string, string | undefined>) => ({ ...s, q: e.target.value || undefined }) })} />
         </div>
       </Card>
 
