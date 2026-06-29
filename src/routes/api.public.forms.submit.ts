@@ -187,7 +187,7 @@ export const Route = createFileRoute("/api/public/forms/submit")({
             return {
               submission_id: sub.id,
               field_id: f.id,
-              value: raw === undefined ? null : raw,
+              value: (raw === undefined ? null : raw) as never,
             };
           });
         if (answersRows.length > 0) {

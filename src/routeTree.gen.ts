@@ -21,6 +21,7 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias.index'
 import { Route as NoticiasSlugRouteImport } from './routes/noticias.$slug'
+import { Route as FormulariosSlugRouteImport } from './routes/formularios.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
 import { Route as AuthenticatedAdminUsuariosRouteImport } from './routes/_authenticated.admin.usuarios'
@@ -34,6 +35,7 @@ import { Route as AuthenticatedAdminConfiguracoesRouteImport } from './routes/_a
 import { Route as AuthenticatedAdminComentariosRouteImport } from './routes/_authenticated.admin.comentarios'
 import { Route as AuthenticatedAdminArquivosRouteImport } from './routes/_authenticated.admin.arquivos'
 import { Route as AuthenticatedAdminPostagensIndexRouteImport } from './routes/_authenticated.admin.postagens.index'
+import { Route as ApiPublicFormsSubmitRouteImport } from './routes/api.public.forms.submit'
 import { Route as AuthenticatedAdminPostagensNovoRouteImport } from './routes/_authenticated.admin.postagens.novo'
 import { Route as AuthenticatedAdminPostagensIdRouteImport } from './routes/_authenticated.admin.postagens.$id'
 
@@ -94,6 +96,11 @@ const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
 const NoticiasSlugRoute = NoticiasSlugRouteImport.update({
   id: '/noticias/$slug',
   path: '/noticias/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormulariosSlugRoute = FormulariosSlugRouteImport.update({
+  id: '/formularios/$slug',
+  path: '/formularios/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -171,6 +178,11 @@ const AuthenticatedAdminPostagensIndexRoute =
     path: '/postagens/',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const ApiPublicFormsSubmitRoute = ApiPublicFormsSubmitRouteImport.update({
+  id: '/api/public/forms/submit',
+  path: '/api/public/forms/submit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminPostagensNovoRoute =
   AuthenticatedAdminPostagensNovoRouteImport.update({
     id: '/postagens/novo',
@@ -195,6 +207,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/formularios/$slug': typeof FormulariosSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
@@ -210,6 +223,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
   '/admin/postagens/': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRoutesByTo {
@@ -222,6 +236,7 @@ export interface FileRoutesByTo {
   '/newsletter': typeof NewsletterRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
+  '/formularios/$slug': typeof FormulariosSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias': typeof NoticiasIndexRoute
   '/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
@@ -237,6 +252,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
   '/admin/postagens': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRoutesById {
@@ -252,6 +268,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/formularios/$slug': typeof FormulariosSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/_authenticated/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
@@ -267,6 +284,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/_authenticated/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
   '/_authenticated/admin/postagens/': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRouteTypes {
@@ -282,6 +300,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/admin'
+    | '/formularios/$slug'
     | '/noticias/$slug'
     | '/noticias/'
     | '/admin/arquivos'
@@ -297,6 +316,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/admin/postagens/$id'
     | '/admin/postagens/novo'
+    | '/api/public/forms/submit'
     | '/admin/postagens/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -309,6 +329,7 @@ export interface FileRouteTypes {
     | '/newsletter'
     | '/sitemap.xml'
     | '/sobre'
+    | '/formularios/$slug'
     | '/noticias/$slug'
     | '/noticias'
     | '/admin/arquivos'
@@ -324,6 +345,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/postagens/$id'
     | '/admin/postagens/novo'
+    | '/api/public/forms/submit'
     | '/admin/postagens'
   id:
     | '__root__'
@@ -338,6 +360,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/_authenticated/admin'
+    | '/formularios/$slug'
     | '/noticias/$slug'
     | '/noticias/'
     | '/_authenticated/admin/arquivos'
@@ -353,6 +376,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/'
     | '/_authenticated/admin/postagens/$id'
     | '/_authenticated/admin/postagens/novo'
+    | '/api/public/forms/submit'
     | '/_authenticated/admin/postagens/'
   fileRoutesById: FileRoutesById
 }
@@ -367,8 +391,10 @@ export interface RootRouteChildren {
   NewsletterRoute: typeof NewsletterRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
+  FormulariosSlugRoute: typeof FormulariosSlugRoute
   NoticiasSlugRoute: typeof NoticiasSlugRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
+  ApiPublicFormsSubmitRoute: typeof ApiPublicFormsSubmitRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -455,6 +481,13 @@ declare module '@tanstack/react-router' {
       path: '/noticias/$slug'
       fullPath: '/noticias/$slug'
       preLoaderRoute: typeof NoticiasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formularios/$slug': {
+      id: '/formularios/$slug'
+      path: '/formularios/$slug'
+      fullPath: '/formularios/$slug'
+      preLoaderRoute: typeof FormulariosSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -548,6 +581,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPostagensIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/api/public/forms/submit': {
+      id: '/api/public/forms/submit'
+      path: '/api/public/forms/submit'
+      fullPath: '/api/public/forms/submit'
+      preLoaderRoute: typeof ApiPublicFormsSubmitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/postagens/novo': {
       id: '/_authenticated/admin/postagens/novo'
       path: '/postagens/novo'
@@ -625,8 +665,10 @@ const rootRouteChildren: RootRouteChildren = {
   NewsletterRoute: NewsletterRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
+  FormulariosSlugRoute: FormulariosSlugRoute,
   NoticiasSlugRoute: NoticiasSlugRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
+  ApiPublicFormsSubmitRoute: ApiPublicFormsSubmitRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
