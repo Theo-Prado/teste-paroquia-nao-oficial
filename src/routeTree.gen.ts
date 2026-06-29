@@ -21,6 +21,7 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias.index'
 import { Route as NoticiasSlugRouteImport } from './routes/noticias.$slug'
+import { Route as FormulariosSlugRouteImport } from './routes/formularios.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated.admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated.admin.index'
 import { Route as AuthenticatedAdminUsuariosRouteImport } from './routes/_authenticated.admin.usuarios'
@@ -34,8 +35,13 @@ import { Route as AuthenticatedAdminConfiguracoesRouteImport } from './routes/_a
 import { Route as AuthenticatedAdminComentariosRouteImport } from './routes/_authenticated.admin.comentarios'
 import { Route as AuthenticatedAdminArquivosRouteImport } from './routes/_authenticated.admin.arquivos'
 import { Route as AuthenticatedAdminPostagensIndexRouteImport } from './routes/_authenticated.admin.postagens.index'
+import { Route as AuthenticatedAdminFormulariosIndexRouteImport } from './routes/_authenticated.admin.formularios.index'
+import { Route as ApiPublicFormsSubmitRouteImport } from './routes/api.public.forms.submit'
 import { Route as AuthenticatedAdminPostagensNovoRouteImport } from './routes/_authenticated.admin.postagens.novo'
 import { Route as AuthenticatedAdminPostagensIdRouteImport } from './routes/_authenticated.admin.postagens.$id'
+import { Route as AuthenticatedAdminFormulariosRespostasRouteImport } from './routes/_authenticated.admin.formularios.respostas'
+import { Route as AuthenticatedAdminFormulariosNovoRouteImport } from './routes/_authenticated.admin.formularios.novo'
+import { Route as AuthenticatedAdminFormulariosIdRouteImport } from './routes/_authenticated.admin.formularios.$id'
 
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
@@ -94,6 +100,11 @@ const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
 const NoticiasSlugRoute = NoticiasSlugRouteImport.update({
   id: '/noticias/$slug',
   path: '/noticias/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormulariosSlugRoute = FormulariosSlugRouteImport.update({
+  id: '/formularios/$slug',
+  path: '/formularios/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -171,6 +182,17 @@ const AuthenticatedAdminPostagensIndexRoute =
     path: '/postagens/',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminFormulariosIndexRoute =
+  AuthenticatedAdminFormulariosIndexRouteImport.update({
+    id: '/formularios/',
+    path: '/formularios/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const ApiPublicFormsSubmitRoute = ApiPublicFormsSubmitRouteImport.update({
+  id: '/api/public/forms/submit',
+  path: '/api/public/forms/submit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminPostagensNovoRoute =
   AuthenticatedAdminPostagensNovoRouteImport.update({
     id: '/postagens/novo',
@@ -181,6 +203,24 @@ const AuthenticatedAdminPostagensIdRoute =
   AuthenticatedAdminPostagensIdRouteImport.update({
     id: '/postagens/$id',
     path: '/postagens/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminFormulariosRespostasRoute =
+  AuthenticatedAdminFormulariosRespostasRouteImport.update({
+    id: '/formularios/respostas',
+    path: '/formularios/respostas',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminFormulariosNovoRoute =
+  AuthenticatedAdminFormulariosNovoRouteImport.update({
+    id: '/formularios/novo',
+    path: '/formularios/novo',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminFormulariosIdRoute =
+  AuthenticatedAdminFormulariosIdRouteImport.update({
+    id: '/formularios/$id',
+    path: '/formularios/$id',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 
@@ -195,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/formularios/$slug': typeof FormulariosSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
@@ -208,8 +249,13 @@ export interface FileRoutesByFullPath {
   '/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
   '/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/formularios/$id': typeof AuthenticatedAdminFormulariosIdRoute
+  '/admin/formularios/novo': typeof AuthenticatedAdminFormulariosNovoRoute
+  '/admin/formularios/respostas': typeof AuthenticatedAdminFormulariosRespostasRoute
   '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
+  '/admin/formularios/': typeof AuthenticatedAdminFormulariosIndexRoute
   '/admin/postagens/': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRoutesByTo {
@@ -222,6 +268,7 @@ export interface FileRoutesByTo {
   '/newsletter': typeof NewsletterRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
+  '/formularios/$slug': typeof FormulariosSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias': typeof NoticiasIndexRoute
   '/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
@@ -235,8 +282,13 @@ export interface FileRoutesByTo {
   '/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
   '/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/formularios/$id': typeof AuthenticatedAdminFormulariosIdRoute
+  '/admin/formularios/novo': typeof AuthenticatedAdminFormulariosNovoRoute
+  '/admin/formularios/respostas': typeof AuthenticatedAdminFormulariosRespostasRoute
   '/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
+  '/admin/formularios': typeof AuthenticatedAdminFormulariosIndexRoute
   '/admin/postagens': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRoutesById {
@@ -252,6 +304,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/formularios/$slug': typeof FormulariosSlugRoute
   '/noticias/$slug': typeof NoticiasSlugRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/_authenticated/admin/arquivos': typeof AuthenticatedAdminArquivosRoute
@@ -265,8 +318,13 @@ export interface FileRoutesById {
   '/_authenticated/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
   '/_authenticated/admin/usuarios': typeof AuthenticatedAdminUsuariosRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/formularios/$id': typeof AuthenticatedAdminFormulariosIdRoute
+  '/_authenticated/admin/formularios/novo': typeof AuthenticatedAdminFormulariosNovoRoute
+  '/_authenticated/admin/formularios/respostas': typeof AuthenticatedAdminFormulariosRespostasRoute
   '/_authenticated/admin/postagens/$id': typeof AuthenticatedAdminPostagensIdRoute
   '/_authenticated/admin/postagens/novo': typeof AuthenticatedAdminPostagensNovoRoute
+  '/api/public/forms/submit': typeof ApiPublicFormsSubmitRoute
+  '/_authenticated/admin/formularios/': typeof AuthenticatedAdminFormulariosIndexRoute
   '/_authenticated/admin/postagens/': typeof AuthenticatedAdminPostagensIndexRoute
 }
 export interface FileRouteTypes {
@@ -282,6 +340,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/admin'
+    | '/formularios/$slug'
     | '/noticias/$slug'
     | '/noticias/'
     | '/admin/arquivos'
@@ -295,8 +354,13 @@ export interface FileRouteTypes {
     | '/admin/newsletter'
     | '/admin/usuarios'
     | '/admin/'
+    | '/admin/formularios/$id'
+    | '/admin/formularios/novo'
+    | '/admin/formularios/respostas'
     | '/admin/postagens/$id'
     | '/admin/postagens/novo'
+    | '/api/public/forms/submit'
+    | '/admin/formularios/'
     | '/admin/postagens/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -309,6 +373,7 @@ export interface FileRouteTypes {
     | '/newsletter'
     | '/sitemap.xml'
     | '/sobre'
+    | '/formularios/$slug'
     | '/noticias/$slug'
     | '/noticias'
     | '/admin/arquivos'
@@ -322,8 +387,13 @@ export interface FileRouteTypes {
     | '/admin/newsletter'
     | '/admin/usuarios'
     | '/admin'
+    | '/admin/formularios/$id'
+    | '/admin/formularios/novo'
+    | '/admin/formularios/respostas'
     | '/admin/postagens/$id'
     | '/admin/postagens/novo'
+    | '/api/public/forms/submit'
+    | '/admin/formularios'
     | '/admin/postagens'
   id:
     | '__root__'
@@ -338,6 +408,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/_authenticated/admin'
+    | '/formularios/$slug'
     | '/noticias/$slug'
     | '/noticias/'
     | '/_authenticated/admin/arquivos'
@@ -351,8 +422,13 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/newsletter'
     | '/_authenticated/admin/usuarios'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/formularios/$id'
+    | '/_authenticated/admin/formularios/novo'
+    | '/_authenticated/admin/formularios/respostas'
     | '/_authenticated/admin/postagens/$id'
     | '/_authenticated/admin/postagens/novo'
+    | '/api/public/forms/submit'
+    | '/_authenticated/admin/formularios/'
     | '/_authenticated/admin/postagens/'
   fileRoutesById: FileRoutesById
 }
@@ -367,8 +443,10 @@ export interface RootRouteChildren {
   NewsletterRoute: typeof NewsletterRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
+  FormulariosSlugRoute: typeof FormulariosSlugRoute
   NoticiasSlugRoute: typeof NoticiasSlugRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
+  ApiPublicFormsSubmitRoute: typeof ApiPublicFormsSubmitRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -455,6 +533,13 @@ declare module '@tanstack/react-router' {
       path: '/noticias/$slug'
       fullPath: '/noticias/$slug'
       preLoaderRoute: typeof NoticiasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formularios/$slug': {
+      id: '/formularios/$slug'
+      path: '/formularios/$slug'
+      fullPath: '/formularios/$slug'
+      preLoaderRoute: typeof FormulariosSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -548,6 +633,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPostagensIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/formularios/': {
+      id: '/_authenticated/admin/formularios/'
+      path: '/formularios'
+      fullPath: '/admin/formularios/'
+      preLoaderRoute: typeof AuthenticatedAdminFormulariosIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/api/public/forms/submit': {
+      id: '/api/public/forms/submit'
+      path: '/api/public/forms/submit'
+      fullPath: '/api/public/forms/submit'
+      preLoaderRoute: typeof ApiPublicFormsSubmitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/postagens/novo': {
       id: '/_authenticated/admin/postagens/novo'
       path: '/postagens/novo'
@@ -560,6 +659,27 @@ declare module '@tanstack/react-router' {
       path: '/postagens/$id'
       fullPath: '/admin/postagens/$id'
       preLoaderRoute: typeof AuthenticatedAdminPostagensIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/formularios/respostas': {
+      id: '/_authenticated/admin/formularios/respostas'
+      path: '/formularios/respostas'
+      fullPath: '/admin/formularios/respostas'
+      preLoaderRoute: typeof AuthenticatedAdminFormulariosRespostasRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/formularios/novo': {
+      id: '/_authenticated/admin/formularios/novo'
+      path: '/formularios/novo'
+      fullPath: '/admin/formularios/novo'
+      preLoaderRoute: typeof AuthenticatedAdminFormulariosNovoRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/formularios/$id': {
+      id: '/_authenticated/admin/formularios/$id'
+      path: '/formularios/$id'
+      fullPath: '/admin/formularios/$id'
+      preLoaderRoute: typeof AuthenticatedAdminFormulariosIdRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
   }
@@ -577,8 +697,12 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminNewsletterRoute: typeof AuthenticatedAdminNewsletterRoute
   AuthenticatedAdminUsuariosRoute: typeof AuthenticatedAdminUsuariosRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminFormulariosIdRoute: typeof AuthenticatedAdminFormulariosIdRoute
+  AuthenticatedAdminFormulariosNovoRoute: typeof AuthenticatedAdminFormulariosNovoRoute
+  AuthenticatedAdminFormulariosRespostasRoute: typeof AuthenticatedAdminFormulariosRespostasRoute
   AuthenticatedAdminPostagensIdRoute: typeof AuthenticatedAdminPostagensIdRoute
   AuthenticatedAdminPostagensNovoRoute: typeof AuthenticatedAdminPostagensNovoRoute
+  AuthenticatedAdminFormulariosIndexRoute: typeof AuthenticatedAdminFormulariosIndexRoute
   AuthenticatedAdminPostagensIndexRoute: typeof AuthenticatedAdminPostagensIndexRoute
 }
 
@@ -594,8 +718,15 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminNewsletterRoute: AuthenticatedAdminNewsletterRoute,
   AuthenticatedAdminUsuariosRoute: AuthenticatedAdminUsuariosRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminFormulariosIdRoute: AuthenticatedAdminFormulariosIdRoute,
+  AuthenticatedAdminFormulariosNovoRoute:
+    AuthenticatedAdminFormulariosNovoRoute,
+  AuthenticatedAdminFormulariosRespostasRoute:
+    AuthenticatedAdminFormulariosRespostasRoute,
   AuthenticatedAdminPostagensIdRoute: AuthenticatedAdminPostagensIdRoute,
   AuthenticatedAdminPostagensNovoRoute: AuthenticatedAdminPostagensNovoRoute,
+  AuthenticatedAdminFormulariosIndexRoute:
+    AuthenticatedAdminFormulariosIndexRoute,
   AuthenticatedAdminPostagensIndexRoute: AuthenticatedAdminPostagensIndexRoute,
 }
 
@@ -625,19 +756,11 @@ const rootRouteChildren: RootRouteChildren = {
   NewsletterRoute: NewsletterRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
+  FormulariosSlugRoute: FormulariosSlugRoute,
   NoticiasSlugRoute: NoticiasSlugRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
+  ApiPublicFormsSubmitRoute: ApiPublicFormsSubmitRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
