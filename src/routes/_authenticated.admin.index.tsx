@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip, LineChart, Line, CartesianGrid } from "recharts";
-import { FileText, Calendar, MessageSquare, Mail, Eye, Users } from "lucide-react";
+import { FileText, Calendar, MessageSquare, Mail, Eye, Users, ClipboardList, Reply } from "lucide-react";
 import { AdminLayout } from "@/components/admin-layout";
 import { Card } from "@/components/ui/card";
+import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
+import { formsRepository } from "@/lib/forms/repository";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
   component: Dashboard,
