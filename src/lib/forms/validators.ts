@@ -85,11 +85,12 @@ function schemaForField(f: BuilderField, opts: { server: boolean }): ZodTypeAny 
       return required ? s.refine((v) => onlyDigits(v).length >= 10, f.validation.message ?? "Telefone inválido") : s.optional();
     }
     case "state": {
-      const s = z.string().trim().refine(
+      const base = z.string().trim();
+      const s = base.refine(
         (v) => !v || UF_LIST.includes(v.toUpperCase()),
         f.validation.message ?? "UF inválida",
       );
-      return required ? s.min(2, f.validation.message ?? "Informe a UF") : s.optional();
+      return required ? base.min(2, f.validation.message ?? "Informe a UF") : s.optional();
     }
     case "number_int": {
       const base = z.coerce.number().int(f.validation.message ?? "Informe um inteiro");
@@ -116,11 +117,13 @@ function schemaForField(f: BuilderField, opts: { server: boolean }): ZodTypeAny 
     }
     case "checkbox": {
       const values = (f.options ?? []).map((o) => o.value);
-      const s = z.array(z.string()).refine(
-        (arr) => arr.every((v) => values.includes(v)),
+      const arr = z.array(z.string()).refine(
+        (a) => a.every((v) => values.includes(v)),
         f.validation.message ?? "Opção inválida",
       );
-      return required ? s.min(1, f.validation.message ?? "Selecione ao menos uma opção") : s.optional().default([]);
+      return required
+        ? z.array(z.string()).min(1, f.validation.message ?? "Selecione ao menos uma opção")
+        : arr.optional().default([]);
     }
     case "hidden":
     case "password":
