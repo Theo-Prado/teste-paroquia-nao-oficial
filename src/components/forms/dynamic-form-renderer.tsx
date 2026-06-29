@@ -14,12 +14,12 @@ import { FieldRenderer } from "./field-renderer";
 import { buildFormSchemaFromRows } from "@/lib/forms/validators";
 import { isFileField } from "@/lib/forms/types";
 import type { FormFieldRow, FormRow } from "@/lib/forms/types";
-import type { FormSettings } from "@/lib/forms/repository";
+import { rowToSettings } from "@/lib/forms/repository";
 
 type Props = { form: FormRow; fields: FormFieldRow[] };
 
 export function DynamicFormRenderer({ form, fields }: Props) {
-  const settings = (form.settings as FormSettings) ?? {};
+  const settings = rowToSettings(form);
   const [submitted, setSubmitted] = useState(false);
 
   const schema = useMemo(() => buildFormSchemaFromRows(fields, { server: false }), [fields]);
