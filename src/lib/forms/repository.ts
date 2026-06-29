@@ -15,12 +15,38 @@ export type FormSettings = {
   responseLimit?: number | null;
 };
 
+/** Converte colunas do banco em DTO de settings (UI-friendly). */
+export function rowToSettings(r: FormRow): FormSettings {
+  return {
+    successMessage: r.success_message,
+    errorMessage: r.error_message,
+    acceptResponses: r.accept_submissions,
+    allowMultiplePerUser: r.allow_multiple,
+    startsAt: r.start_at,
+    endsAt: r.end_at,
+    responseLimit: r.submission_limit,
+  };
+}
+
+/** Converte settings da UI para colunas do banco. */
+function settingsToColumns(s: FormSettings) {
+  return {
+    success_message: s.successMessage ?? "Resposta enviada com sucesso. Obrigado!",
+    error_message: s.errorMessage ?? "Houve um erro ao enviar. Tente novamente.",
+    accept_submissions: s.acceptResponses ?? true,
+    allow_multiple: s.allowMultiplePerUser ?? true,
+    start_at: s.startsAt ?? null,
+    end_at: s.endsAt ?? null,
+    submission_limit: s.responseLimit ?? null,
+  };
+}
+
 export const formsRepository = {
   /** Lista todos os formulários do admin. */
   async listAdmin() {
     const { data, error } = await supabase
       .from("forms")
-      .select("id, title, slug, description, category, status, settings, created_at, updated_at")
+      .select("*")
       .order("created_at", { ascending: false });
     if (error) throw error;
     return data ?? [];
@@ -67,25 +93,16 @@ export const formsRepository = {
     status: "rascunho" | "publicado" | "arquivado";
     settings: FormSettings;
   }) {
+    const base = {
+      title: input.title, slug: input.slug, description: input.description ?? null,
+      category: input.category ?? null, status: input.status, ...settingsToColumns(input.settings),
+    };
     if (input.id) {
-      const { error } = await supabase
-        .from("forms")
-        .update({
-          title: input.title, slug: input.slug, description: input.description,
-          category: input.category, status: input.status, settings: input.settings,
-        })
-        .eq("id", input.id);
+      const { error } = await supabase.from("forms").update(base).eq("id", input.id);
       if (error) throw error;
       return input.id;
     }
-    const { data, error } = await supabase
-      .from("forms")
-      .insert({
-        title: input.title, slug: input.slug, description: input.description,
-        category: input.category, status: input.status, settings: input.settings,
-      })
-      .select("id")
-      .single();
+    const { data, error } = await supabase.from("forms").insert(base).select("id").single();
     if (error) throw error;
     return data.id as string;
   },
@@ -124,7 +141,7 @@ export const formsRepository = {
       description: original.form.description,
       category: original.form.category,
       status: "rascunho",
-      settings: (original.form.settings as FormSettings) ?? {},
+      settings: rowToSettings(original.form),
     });
     const newFields: BuilderField[] = original.fields.map((r, i) => ({
       type: r.type as BuilderField["type"],
