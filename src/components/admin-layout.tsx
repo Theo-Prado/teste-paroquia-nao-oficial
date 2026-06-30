@@ -1,7 +1,7 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import {
   LayoutDashboard, FileText, Calendar, Clock, Images, MessageSquare,
-  Mail, Inbox, Settings, Users, FileArchive, ScrollText, LogOut, Globe, Moon, Sun, ClipboardList, Reply
+  Mail, Inbox, Settings, Users, FileArchive, ScrollText, LogOut, Globe, Moon, Sun
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
@@ -26,8 +26,6 @@ const items: NavItem[] = [
   { to: "/admin/comentarios", label: "Comentários", icon: MessageSquare },
   { to: "/admin/newsletter", label: "Newsletter", icon: Mail },
   { to: "/admin/mensagens", label: "Mensagens", icon: Inbox },
-  { to: "/admin/formularios", label: "Formulários", icon: ClipboardList },
-  { to: "/admin/formularios/respostas", label: "Respostas", icon: Reply },
   { to: "/admin/arquivos", label: "Arquivos", icon: FileArchive },
   { to: "/admin/usuarios", label: "Usuários", icon: Users, adminOnly: true },
   { to: "/admin/logs", label: "Logs", icon: ScrollText, adminOnly: true },

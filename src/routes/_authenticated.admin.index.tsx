@@ -1,12 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip, LineChart, Line, CartesianGrid } from "recharts";
-import { FileText, Calendar, MessageSquare, Mail, Eye, Users, ClipboardList, Reply } from "lucide-react";
+import { FileText, Calendar, MessageSquare, Mail, Eye, Users } from "lucide-react";
 import { AdminLayout } from "@/components/admin-layout";
 import { Card } from "@/components/ui/card";
-import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
-import { formsRepository } from "@/lib/forms/repository";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
   component: Dashboard,
@@ -65,12 +63,6 @@ function Dashboard() {
     },
   });
 
-  // Estatísticas do módulo de Formulários (totais agregados pelo repositório).
-  const { data: formsStats } = useQuery({
-    queryKey: ["forms-dashboard-stats"],
-    queryFn: () => formsRepository.stats(),
-  });
-
   const cards = [
     { label: "Postagens", value: stats?.posts ?? 0, icon: FileText, color: "text-primary" },
     { label: "Eventos", value: stats?.eventos ?? 0, icon: Calendar, color: "text-gold" },
@@ -78,13 +70,11 @@ function Dashboard() {
     { label: "Newsletter", value: stats?.newsletter ?? 0, icon: Mail, color: "text-gold" },
     { label: "Visitas", value: stats?.visitas ?? 0, icon: Eye, color: "text-primary" },
     { label: "Mensagens novas", value: stats?.mensagens ?? 0, icon: Users, color: "text-destructive" },
-    { label: "Formulários", value: formsStats?.totalForms ?? 0, icon: ClipboardList, color: "text-primary" },
-    { label: "Respostas", value: formsStats?.totalSubmissions ?? 0, icon: Reply, color: "text-gold" },
   ];
 
   return (
     <AdminLayout title="Dashboard">
-      <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {cards.map((c) => (
           <Card key={c.label} className="p-5">
             <div className="flex items-center justify-between">
@@ -95,26 +85,6 @@ function Dashboard() {
           </Card>
         ))}
       </div>
-
-      {formsStats && (formsStats.topForm || formsStats.lastSubmissionAt) && (
-        <Card className="mt-4 p-5 flex flex-wrap items-center gap-6">
-          {formsStats.topForm && (
-            <div>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">Formulário mais respondido</p>
-              <Link to="/admin/formularios/respostas" search={{ form: formsStats.topForm.id }} className="font-medium hover:underline">
-                {formsStats.topForm.title} <span className="text-muted-foreground text-sm">({formsStats.topForm.count})</span>
-              </Link>
-            </div>
-          )}
-          {formsStats.lastSubmissionAt && (
-            <div>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">Última resposta</p>
-              <p className="font-medium">{new Date(formsStats.lastSubmissionAt).toLocaleString("pt-BR")}</p>
-            </div>
-          )}
-        </Card>
-      )}
-
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <Card className="p-6">
