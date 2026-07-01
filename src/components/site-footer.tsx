@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 import { useConfig } from "@/lib/site-context";
 
 export function SiteFooter() {
@@ -48,7 +48,7 @@ export function SiteFooter() {
           <ul className="mt-3 space-y-3 text-sm text-sidebar-foreground/80">
             {cfg?.endereco && (<li className="flex gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0" /> {cfg.endereco}</li>)}
             {cfg?.telefone && (<li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 shrink-0" /> {cfg.telefone}</li>)}
-            {cfg?.whatsapp && (<li className="flex gap-2"><Phone className="h-4 w-4 mt-0.5 shrink-0" /> WhatsApp: {cfg.whatsapp}</li>)}
+            {cfg?.email && (<li className="flex gap-2"><Mail className="h-4 w-4 mt-0.5 shrink-0" /> {cfg.email}</li>)}
           </ul>
         </div>
       </div>

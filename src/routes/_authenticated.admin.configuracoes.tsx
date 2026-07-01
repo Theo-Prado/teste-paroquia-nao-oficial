@@ -22,16 +22,7 @@ function ConfigAdmin() {
   const { user } = useAuth();
   const [f, setF] = useState<Configuracoes | null>(null);
 
-  // Fetch the email column separately (restricted to authenticated staff).
-  useEffect(() => {
-    if (!cfg || f) return;
-    let cancelled = false;
-    void (async () => {
-      const { data } = await supabase.from("configuracoes").select("email").eq("id", 1).single();
-      if (!cancelled) setF({ ...cfg, email: data?.email ?? null });
-    })();
-    return () => { cancelled = true; };
-  }, [cfg, f]);
+  useEffect(() => { if (cfg && !f) setF(cfg); }, [cfg, f]);
 
   const save = useMutation({
     mutationFn: async () => {

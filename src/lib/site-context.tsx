@@ -5,16 +5,12 @@ import type { Tables } from "@/integrations/supabase/types";
 
 export type Configuracoes = Tables<"configuracoes">;
 
-// Public-safe column list — omits `email` which is restricted to authenticated staff.
-const PUBLIC_CONFIG_COLUMNS =
-  "id,nome_paroquia,nome_site,subtitulo,slogan,logo,logo_dark,favicon,banner_principal,banner_titulo,banner_subtitulo,telefone,whatsapp,endereco,horarios_atendimento,facebook,instagram,youtube,site_externo,texto_institucional,rodape,cor_primaria,cor_secundaria,meta_title,meta_description,updated_at";
-
 export const configQuery = {
   queryKey: ["configuracoes"] as const,
   queryFn: async (): Promise<Configuracoes> => {
-    const { data, error } = await supabase.from("configuracoes").select(PUBLIC_CONFIG_COLUMNS).eq("id", 1).single();
+    const { data, error } = await supabase.from("configuracoes").select("*").eq("id", 1).single();
     if (error) throw error;
-    return { ...(data as Omit<Configuracoes, "email">), email: null } as Configuracoes;
+    return data;
   },
 };
 
