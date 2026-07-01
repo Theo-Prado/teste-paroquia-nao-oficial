@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Youtube, Phone, MapPin } from "lucide-react";
 import { useConfig } from "@/lib/site-context";
 
 export function SiteFooter() {
