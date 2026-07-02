@@ -37,9 +37,9 @@ export const Route = createFileRoute("/noticias/$slug")({
       { property: "og:description", content: loaderData?.post.resumo ?? "" },
       { property: "og:image", content: loaderData?.post.imagem ? publicMediaUrl(loaderData.post.imagem) : "" },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: `/noticias/${loaderData?.post.slug}` },
+      { property: "og:url", content: `https://paroquia-sao-jose-lp-nao-oficial.lovable.app/noticias/${loaderData?.post.slug}` },
     ],
-    links: [{ rel: "canonical", href: `/noticias/${loaderData?.post.slug}` }],
+    links: [{ rel: "canonical", href: `https://paroquia-sao-jose-lp-nao-oficial.lovable.app/noticias/${loaderData?.post.slug}` }],
   }),
   errorComponent: () => (
     <SiteLayout>
