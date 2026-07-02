@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /auth
+
+Sitemap: https://paroquia-sao-jose-lp-nao-oficial.lovable.app/sitemap.xml
