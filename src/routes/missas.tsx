@@ -9,9 +9,9 @@ export const Route = createFileRoute("/missas")({
     meta: [
       { title: "Missas e horários — Paróquia Carlo Acutis" },
       { name: "description", content: "Horários semanais e especiais de missas, confissões, adorações e novenas." },
-      { property: "og:url", content: "/missas" },
+      { property: "og:url", content: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/missas" },
     ],
-    links: [{ rel: "canonical", href: "/missas" }],
+    links: [{ rel: "canonical", href: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/missas" }],
   }),
   component: Missas,
 });

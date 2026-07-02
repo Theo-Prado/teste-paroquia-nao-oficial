@@ -10,9 +10,9 @@ export const Route = createFileRoute("/agenda")({
     meta: [
       { title: "Agenda paroquial — Paróquia Carlo Acutis" },
       { name: "description", content: "Eventos, encontros e celebrações da paróquia." },
-      { property: "og:url", content: "/agenda" },
+      { property: "og:url", content: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/agenda" },
     ],
-    links: [{ rel: "canonical", href: "/agenda" }],
+    links: [{ rel: "canonical", href: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/agenda" }],
   }),
   component: Agenda,
 });

@@ -8,9 +8,9 @@ export const Route = createFileRoute("/sobre")({
       { title: "Sobre a paróquia — Paróquia Carlo Acutis" },
       { name: "description", content: "História, missão, visão, valores e equipe pastoral." },
       { property: "og:title", content: "Sobre a paróquia" },
-      { property: "og:url", content: "/sobre" },
+      { property: "og:url", content: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/sobre" },
     ],
-    links: [{ rel: "canonical", href: "/sobre" }],
+    links: [{ rel: "canonical", href: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/sobre" }],
   }),
   component: Sobre,
 });
