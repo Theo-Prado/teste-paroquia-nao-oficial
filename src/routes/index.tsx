@@ -15,9 +15,9 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Notícias, agenda, missas e vida pastoral da Paróquia Carlo Acutis em Lençóis Paulista." },
       { property: "og:title", content: "Paróquia Carlo Acutis Lençóis Paulista" },
       { property: "og:description", content: "Notícias, agenda, missas e vida pastoral." },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/" }],
   }),
   component: Index,
 });

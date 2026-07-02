@@ -14,9 +14,9 @@ export const Route = createFileRoute("/newsletter")({
     meta: [
       { title: "Newsletter — Paróquia Carlo Acutis" },
       { name: "description", content: "Receba notícias da paróquia direto no seu e-mail." },
-      { property: "og:url", content: "/newsletter" },
+      { property: "og:url", content: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/newsletter" },
     ],
-    links: [{ rel: "canonical", href: "/newsletter" }],
+    links: [{ rel: "canonical", href: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/newsletter" }],
   }),
   component: Newsletter,
 });

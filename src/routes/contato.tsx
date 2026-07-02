@@ -16,9 +16,9 @@ export const Route = createFileRoute("/contato")({
     meta: [
       { title: "Contato — Paróquia Carlo Acutis" },
       { name: "description", content: "Envie sua mensagem ou encontre nosso telefone, e-mail e endereço." },
-      { property: "og:url", content: "/contato" },
+      { property: "og:url", content: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/contato" },
     ],
-    links: [{ rel: "canonical", href: "/contato" }],
+    links: [{ rel: "canonical", href: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/contato" }],
   }),
   component: Contato,
 });

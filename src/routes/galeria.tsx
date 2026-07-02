@@ -9,9 +9,9 @@ export const Route = createFileRoute("/galeria")({
     meta: [
       { title: "Galeria — Paróquia Carlo Acutis" },
       { name: "description", content: "Fotos e vídeos da vida paroquial." },
-      { property: "og:url", content: "/galeria" },
+      { property: "og:url", content: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/galeria" },
     ],
-    links: [{ rel: "canonical", href: "/galeria" }],
+    links: [{ rel: "canonical", href: "https://paroquia-sao-jose-lp-nao-oficial.lovable.app/galeria" }],
   }),
   component: Galeria,
 });
